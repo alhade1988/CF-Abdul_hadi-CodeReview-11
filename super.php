@@ -10,6 +10,10 @@
         header("Location: home.php");
     }
 
+    if(isset($_SESSION["adm"])){
+      header("Location: adm.php");
+  }
+
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["super"]}";
 
     $result = mysqli_query($conn, $sql);
@@ -19,11 +23,51 @@
     $sql2 = "SELECT * FROM users WHERE status = 'user'";
     $result2 = mysqli_query($conn, $sql2);
 
-    $text = "";
+    $sql3 = "SELECT * FROM users WHERE status = 'adm'";
+    $result3 = mysqli_query($conn, $sql3);
 
-    while($row = mysqli_fetch_assoc($result2)){
-        $text.= "<p>{$row["fname"]} {$row["lname"]} |  <a href='update.php?id={$row["id"]}'>Update</a> / <a href='delete.php?id={$row["id"]}'>Delete</a></p>";
+    $text = "";
+    $text1 = "";
+
+    while($row = mysqli_fetch_assoc($result3)){
+        $text.= "
+        
+        <div class='container text-center'>
+  <div class='row'>
+    <div class='col'>
+        
+      <img src='https://cdn.pixabay.com/photo/2020/10/31/16/39/boss-5701646__340.jpg' class='img-fluid rounded-start' alt='...'>
+    </div>
+    <div class='col'>
+      <div class='card-body'>
+      <h3 class='fs-1 text-center'>Admin Table</h3>
+        <p class='fs-1 text-center'>{$row['fname']} {$row['lname']}   <a class='btn btn-outline-primary' href='update.php?id={$row['id']}'>Update</a>  <a class='btn btn-outline-danger' href='delete.php?id={$row["id"]}'>Delete</a></p>
+      </div>
+    </div>
+  </div>
+</div> <br> ";
     }
+    while($row = mysqli_fetch_assoc($result2)){
+       
+      $text.= "
+        
+        <div class='container text-center'>
+  <div class='row'>
+    <div class='col'>
+        
+      <img src='https://cdn.pixabay.com/photo/2016/04/26/12/25/male-1354358__340.png' class='img-fluid rounded-start' alt='...'>
+    </div>
+    <div class='col'>
+      <div class='card-body'>
+      <h3 class='fs-1 text-center'>User Table</h3>
+        <p class='fs-1 text-center'>{$row['fname']} {$row['lname']}   <a class='btn btn-outline-primary' href='update.php?id={$row['id']}'>Update</a>  <a class='btn btn-outline-danger' href='delete.php?id={$row["id"]}'>Delete</a></p>
+      </div>
+    </div>
+  </div>
+</div> <br> ";
+    }
+
+   
 ?>
 
 
@@ -43,7 +87,7 @@
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
 <div class="container-fluid">
-<a class="navbar-brand" href="dashboard.php"><h1>superAdm page, welcome <?= $data["lname"] ?>  </h1></a>
+<a class="navbar-brand" href="super.php"><h1>superAdm page  <span class="text-info bg-dark">welcome <?= $data["lname"] ?></span>  </h1></a>
 <a class="navbar-brand" href="update.php?id=<?= $data["id"] ?>">Update your account</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
 <span class="navbar-toggler-icon"></span>
@@ -87,21 +131,14 @@
 
 
     <br><br>
-
-    <div class="card mb-1 >" style="max-width: 540px;" 
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://cdn.pixabay.com/photo/2022/09/02/20/03/man-7428290__340.jpg" class="img-fluid rounded-start" alt="...">
+<div class="card-body mt-5 "  >
+        <?= $text1 ?>
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-      <h3>User Table</h3>
+    <div class="card-body mt-5 "  >
         <?= $text ?>
-       
-      </div>
     </div>
-  </div>
-</div>
+  
+    
 
    
 

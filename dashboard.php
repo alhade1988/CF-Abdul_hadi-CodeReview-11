@@ -23,8 +23,23 @@
     $text = "";
 
     while($row = mysqli_fetch_assoc($result2)){
-        $text.= "<p>{$row["fname"]} {$row["lname"]} |  <a href='update.php?id={$row["id"]}'>Update</a> / <a href='delete.php?id={$row["id"]}'>Delete</a></p>";
-    }
+      $text.= "
+      
+      <div class='container text-center'>
+<div class='row'>
+  <div class='col'>
+      
+    <img src='https://cdn.pixabay.com/photo/2016/04/26/12/25/male-1354358__340.png' class='img-fluid rounded-start' alt='...'>
+  </div>
+  <div class='col'>
+    <div class='card-body'>
+    <h3 class='fs-1 text-center'>User Table</h3>
+      <p class='fs-1 text-center'>{$row['fname']} {$row['lname']}   <a class='btn btn-outline-primary' href='update.php?id={$row['id']}'>Update</a>  <a class='btn btn-outline-danger' href='delete.php?id={$row["id"]}'>Delete</a></p>
+    </div>
+  </div>
+</div>
+</div> <br> ";
+  }
 ?>
 
 
@@ -87,22 +102,12 @@
 
 
 
-    <br><br>
+<br><br>
 
-    <div class="card mb-1 >" style="max-width: 540px;" 
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://cdn.pixabay.com/photo/2022/09/02/20/03/man-7428290__340.jpg" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-      <h3>User Table</h3>
-        <?= $text ?>
-       
-      </div>
-    </div>
-  </div>
+<div class="card-body mt-5 "  >
+    <?= $text ?>
 </div>
+
 
    
 

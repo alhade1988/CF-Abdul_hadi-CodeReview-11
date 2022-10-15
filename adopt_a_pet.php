@@ -1,43 +1,74 @@
 <?php
-session_start();
+
 require_once "actions/db_connect.php";
 
-if(isset($_GET["id"])){
-$id = $_GET["id"];
-$sql = "SELECT * From adopt_a_pet join users on users.id = adopt_a_pet.fk_users join animals on animals.id = adopt_a_pet.fk_animals WHERE  id = {$id}";
-
-
+$sql = "SELECT * FROM users";
 $result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 
-    
-   
+$sql2 = "SELECT * FROM `adopt_a_pet`  ";
+$result2 = mysqli_query($conn, $sql2);
+$row2 = mysqli_fetch_assoc($result2);
+
+
+
+$sql3 = "SELECT * FROM animals";
+$result3 = mysqli_query($conn, $sql3);
+$row3 = mysqli_fetch_assoc($result);
+
+
+
+if ($_GET['id']) {
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM adopt_a_pet WHERE id = {$id}" ;
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  if (mysqli_num_rows($result) == 1) {
+      $adopt_a_pet = $row["adopt_a_pet"];
+      $fk_animals =$row["fk_animals"];
+      $fk_animals = $row["fk_animals"];
+      $animalsname = $row["animalsname"];
+        $img =$row["img"];
+        $description = $row["description"];
+        $hobbies = $row["hobbies"];
+        $address = $row["address"];
+        $age =$row["age"];
+        $sise = $row["sise"];
+  } else {
+      header("location: error.php");
+  }
+  mysqli_close($conn);
+} else {
+  header("location: error.php");
+}  
+
+
 $body = "";
 
-    if(mysqli_num_rows($result) == 0){
-        $body = "<div class='text-center h1 text-danger'>No Results</div>";
-    }else {
-        while($row = mysqli_fetch_assoc($result)){
-            $body.= "
-            <div>
-            <div class='card m-1 mt-5 text-warning bg-dark' style='width: 18rem;'>
-                <img src='../img/{$row["img"]}' class='card-img-top' alt='{$row["animalsname"]}'>
-                <div class='card-body'>
-                  <h5 class='card-title'>{$row["fname"]}"-"{$row["animalsname"]}</h5>
-                  
-                  <p class='card-text'>description:{$row["fname"]}"-" {$row["description"]} </p>
-                  <p class='card-text'>hobbies:{$row["fname"]}"-" {$row["hobbies"]} </p>
-                  <p class='card-text'>address: {$row["fname"]}"-"{$row["address"]} </p>
-                  <p class='card-text'>age:{$row["fname"]}"-" {$row["age"]} </p>
-                  <p class='card-text'>sise:{$row["fname"]}"-" {$row["sise"]} </p>   
-                </div>
-              </div>
-              </div>
-              
-              ";
-        } 
-    }
+
+    $body.= "
+    <div>
+    <div class='card m-1 mt-5 text-warning bg-dark' style='width: 18rem;'>
+        <img src='../img/{$row["img"]}' class='card-img-top' alt='{$row["animalsname"]}'>
+        <div class='card-body'>
+          <h5 class='card-title'>{$row["animalsname"]}</h5>
+          
+          <p class='card-text'>description: {$row["description"]} </p>
+          <p class='card-text'>hobbies: {$row["hobbies"]} </p>
+          <p class='card-text'>address: {$row["address"]} </p>
+          <p class='card-text'>age: {$row["age"]} </p>
+          <p class='card-text'>sise: {$row["sise"]} </p>
+          <a href='adopt_a_pet.php?id={$row["id"]}' class='btn btn-primary'>adopt_a_pet</a>   
+        </div>
+      </div>
+      </div>
+      
+      ";
+
 
 ?>
+
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +80,7 @@ $body = "";
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<!-- <nav class="navbar navbar-dark bg-dark fixed-top">
 
 <div class="container-fluid">
 <a class="navbar-brand" href="home.php"><h1 class="navbar-brand">Home page, welcome <?= $data["lname"] ?> </h1></a>
@@ -88,13 +119,20 @@ $body = "";
 </div>
 </div>
 </div>
-</nav>
+</nav> -->
     
     <br>
 
     <div class="container mt-5">
         <div class="row row-cols-3 ">
-            <?= $body; ?>
+        <div class='card m-1 mt-5 text-warning bg-dark' style='width: 18rem;'>
+                
+                <div class='card-body'>
+                  <h5 class='card-title'><?php echo $adopt_a_pet ?><?php echo $adopt_a_pet ?></h5>
+                  <?= $body; ?>
+                    
+                </div>
+              </div>
         </div>
     </div> 
 
@@ -104,6 +142,3 @@ $body = "";
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
-<?php 
-} 
-?>
