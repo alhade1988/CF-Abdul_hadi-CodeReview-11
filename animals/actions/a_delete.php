@@ -24,7 +24,7 @@ if ($_POST) {
         $class = "danger";
         $message = "The entry was not deleted due to: <br>" . $conn->error;
     }
-    mysqli_close($conn);
+    mysqli_close($conn, $sql);
 } else {
     header("location: ../error.php");
 }

@@ -161,7 +161,7 @@ height: 150px
                 <input type="file" class="form-control" id="img" name="img">
             </div>
 
-      <input type="hidden" class="form-control" id="description" name="id" placeholder="id" value= "<?php echo $row["id"]; ?>">
+      <input type="hidden" class="form-control" id="id" name="id" placeholder="id" value= "<?php echo $row["id"]; ?>">
       <button type="submit" class="btn btn-primary">Update</button>
 </form>
 </div>

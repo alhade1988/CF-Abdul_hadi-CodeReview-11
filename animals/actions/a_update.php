@@ -14,14 +14,14 @@ if(isset($_SESSION["user"])){
 
 
 if($_POST){
-    $id = $_POST["id"];
-    $animalsname= $_POST["animalsname"];
-    $description = $_POST["description"];
-    $hobbies = $_POST["hobbies"];
-    $address = $_POST["address"];
-    $age = $_POST["age"];
-    $sise = $_POST["sise"];
-    $img = file_upload($_FILES["img"]);
+    $id = $_POST['id'];
+    $animalsname= $_POST['animalsname'];
+    $description = $_POST['description'];
+    $hobbies = $_POST['hobbies'];
+    $address = $_POST['address'];
+    $age = $_POST['age'];
+    $sise = $_POST['sise'];
+    $img = file_upload($_FILES['img']);
     
     $sql = "UPDATE `animals` SET `animalsname`='$animalsname',`img`='$img->fileName',`description`='$description',`hobbies`='$hobbies',`address`='$address',`age`='$age',`sise`='$sise' where id = {$id}";
     $result = mysqli_query($conn, $sql);

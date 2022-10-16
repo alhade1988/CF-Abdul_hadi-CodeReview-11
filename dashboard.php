@@ -9,13 +9,14 @@
     if(isset($_SESSION["user"])){
         header("Location: home.php");
         }
-        if(isset($_SESSION["user"])){
-          header("Location: dashboard.php");}
-    $sql = "SELECT * FROM users WHERE id = {$_SESSION["adm"]}";
-    
-    
-    $result = mysqli_query($conn, $sql);
+       
+        
+          if(isset($_SESSION["super"])){
+            header("Location: super.php");
+          }
 
+    $sql = "SELECT * FROM users WHERE id = {$_SESSION['adm']}";
+    $result = mysqli_query($conn, $sql);
     $data = mysqli_fetch_assoc($result);
     
     $sql2 = "SELECT * FROM users WHERE status = 'user'";
@@ -35,7 +36,8 @@
   <div class='col'>
     <div class='card-body'>
     <h3 class='fs-1 text-center'>User Table</h3>
-      <p class='fs-1 text-center'>{$row['fname']} {$row['lname']}   <a class='btn btn-outline-primary' href='update.php?id={$row['id']}'>Update</a>  <a class='btn btn-outline-danger' href='delete.php?id={$row["id"]}'>Delete</a></p>
+      <p class='fs-1 text-center'>{$row['fname']} {$row['lname']}   <a class='btn btn-outline-primary' href='update.php?id={$row['id']}'>Update
+      </a>  <a class='btn btn-outline-danger' href='delete.php?id={$row["id"]}'>Delete</a></p>
     </div>
   </div>
 </div>
@@ -117,3 +119,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>  
 </body>
 </html>
+

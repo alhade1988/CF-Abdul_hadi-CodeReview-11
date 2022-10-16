@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2022 at 07:37 PM
+-- Generation Time: Oct 16, 2022 at 05:56 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -63,9 +63,10 @@ CREATE TABLE `animals` (
 --
 
 INSERT INTO `animals` (`id`, `animalsname`, `img`, `description`, `hobbies`, `address`, `age`, `sise`) VALUES
-(1, 'bbaa', 'literature.webp', 'ssss', 'ssss', 'Nordwestbahnstraße, 101/2/8', 9, 'Small'),
-(4, 'aaa', 'literature.webp', 'sss', 'sss', 'Nordwestbahnstraße', 5, 'Large'),
-(11, 'cas', '6348b75e41215.png', 'qqqqw', 'nbmbhmb', ' cbfgxv', 30, 'Senior');
+(1, 'cat cat', '634b80a6d99c9.jpg', 'wwwww', 'go', 'straße 33', 3, 'Senior'),
+(4, 'cate', '634b802c444b1.jpg', 'kbg knjgh', 'ren', 'straße 33', 5, 'Large'),
+(11, 'cat', '634b7f8bedb07.jpg', '', '', '', 8, 'Large'),
+(12, 'dog', '634b7fc8a6bcd.webp', '', 'sw', 'nstraße 11', 9, 'Small');
 
 -- --------------------------------------------------------
 
@@ -88,9 +89,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `E_Mail`, `PASSWORD`, `dateofbirth`, `status`) VALUES
-(2, 'ame', 'Shrineh', 'amersh99.as@gmail.com', 'a320480f534776bddb5cdb54b1e93d210a3c7d199e80a23c1b2178497b184c76', '0000-00-00', 'user'),
+(2, 'amer', 'shrineh', 'amersh99.as@gmail.com', 'a320480f534776bddb5cdb54b1e93d210a3c7d199e80a23c1b2178497b184c76', '0000-00-00', 'user'),
 (3, 'Abdul Hadi', 'SHRINEH', 'alhade1988@hotmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0000-00-00', 'adm'),
-(5, 'Abdul', 'Hadi', 'test@gmaill.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0000-00-00', 'super');
+(5, 'Abdul', 'Hadi', 'test@gmaill.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0000-00-00', 'super'),
+(6, 'abd', 'shr', 'abd@abd.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0000-00-00', 'user');
 
 --
 -- Indexes for dumped tables
@@ -108,9 +110,7 @@ ALTER TABLE `adopt_a_pet`
 -- Indexes for table `animals`
 --
 ALTER TABLE `animals`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `description` (`description`),
-  ADD UNIQUE KEY `hobbies` (`hobbies`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -133,13 +133,13 @@ ALTER TABLE `adopt_a_pet`
 -- AUTO_INCREMENT for table `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
