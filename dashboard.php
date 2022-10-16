@@ -8,10 +8,11 @@
 
     if(isset($_SESSION["user"])){
         header("Location: home.php");
-    }
-
+        }
+        if(isset($_SESSION["user"])){
+          header("Location: dashboard.php");}
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["adm"]}";
-    $sql = "SELECT * FROM users WHERE id = {$_SESSION["super"]}";
+    
     
     $result = mysqli_query($conn, $sql);
 

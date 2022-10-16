@@ -53,10 +53,12 @@
               if ($data["status"] == "user"){
                     $_SESSION["user"] = $data["id"];
                     header("location: home.php");
-                }else  {$_SESSION["super"]= $data["id"];
-                  header("Location: super.php");} 
-                 } else { $_SESSION["adm"]= $data["id"];
-                    header("Location: dashboard.php");}
+                    
+                }elseif ($data["status"] == "super") {
+                  $_SESSION["super"]= $data["id"];
+                  header("Location: super.php");}  
+                else { $_SESSION["adm"]= $data["id"];
+                    header("Location: dashboard.php");} } 
                 
               }
              
@@ -65,7 +67,7 @@
                  echo "something went wrong, check your credentials";
         }
 
-    
+        
 
 ?>
 

@@ -7,12 +7,12 @@
         header("Location: login.php");
     }
     
-    if(isset($_SESSION["super"])){
-      header("Location: super.php");
-    }
-      elseif(isset($_SESSION["adm"])){
+      if(isset($_SESSION["adm"])){
         header("Location: dashboard.php");
         exit;
+    }elseif(isset($_SESSION["super"])){
+      header("Location: super.php");
+      exit;
     }
     
     $sql = "SELECT * FROM users WHERE id = {$_SESSION["user"]}";
